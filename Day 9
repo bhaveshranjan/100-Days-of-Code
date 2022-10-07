@@ -1,0 +1,46 @@
+Que :- https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+
+Case 1: Input: head = [1,1,2]
+Output: [1,2]
+
+Case 2: Input: head = [1,1,2,3,3]
+Output: [1,2,3]
+
+Constraints:
+
+The number of nodes in the list is in the range [0, 300].
+-100 <= Node.val <= 100
+The list is guaranteed to be sorted in ascending order.
+
+
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head == NULL || head->next == NULL) 
+            return head;
+        ListNode* temp=head;
+        ListNode* cur=head->next;
+        while(cur!=NULL)
+        {
+            if(cur->val==temp->val)
+            {
+               temp->next=cur->next;
+            }else 
+            {
+                temp=cur;
+            }
+            cur=cur->next;
+        }
+        return head;
+    }
+};
