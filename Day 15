@@ -1,0 +1,45 @@
+Que: https://leetcode.com/problems/license-key-formatting
+
+Case 1: Input: s = "5F3Z-2e-9-w", k = 4
+Output: "5F3Z-2E9W"
+Explanation: The string s has been split into two parts, each part has 4 characters.
+Note that the two extra dashes are not needed and can be removed.
+
+Case 2: Input: s = "2-5g-3-J", k = 2
+Output: "2-5G-3J"
+Explanation: The string s has been split into three parts, each part has 2 characters except the first part as it could be shorter as mentioned above.
+
+Constraints:
+
+1 <= s.length <= 105
+s consists of English letters, digits, and dashes '-'.
+1 <= k <= 104
+
+
+
+class Solution {
+public:
+    string licenseKeyFormatting(string S, int K) {
+        if (S.empty()) return S;
+ 
+        std::string key;
+        key.reserve(2*S.length());
+        int len = 0;
+        for_each(S.rbegin(), S.rend(), [&](char c)
+        {
+            if (c != '-')
+            {
+                if(len == K)
+                {
+                    key += "-";
+                    len = 0;
+                }
+                ++len;
+                key += std::toupper(c);
+            }
+        });
+        std::reverse(key.begin(), key.end());
+        return key;
+        
+    }
+};
