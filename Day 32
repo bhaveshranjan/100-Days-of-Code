@@ -1,0 +1,49 @@
+Que: https://leetcode.com/problems/intersection-of-two-linked-lists
+
+Constraints:
+
+The number of nodes of listA is in the m.
+The number of nodes of listB is in the n.
+1 <= m, n <= 3 * 104
+1 <= Node.val <= 105
+0 <= skipA < m
+0 <= skipB < n
+intersectVal is 0 if listA and listB do not intersect.
+intersectVal == listA[skipA] == listB[skipB] if listA and listB intersect.
+
+
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *curA = headA, *curB = headB;
+        ListNode *begin = nullptr, *tailA = nullptr, *tailB = nullptr;
+        while (curA && curB) {
+            if (curA == curB) {
+                begin = curA;
+                break;
+            }
+   
+            if (curA->next) {
+                curA = curA->next;
+            } else if (!tailA) {
+                tailA = curA;
+                curA = headB;
+            } else {
+                break;
+            }
+
+            if (curB->next) {
+                curB = curB->next;
+            } else if (!tailB) {
+                tailB = curB;
+                curB = headA;
+            } else {
+                break;
+            }
+        }
+        
+        return begin;
+        
+    }
+};
