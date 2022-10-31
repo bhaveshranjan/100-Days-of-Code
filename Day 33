@@ -1,0 +1,26 @@
+Que: https://leetcode.com/problems/excel-sheet-column-title
+
+Case 1: Input: columnNumber = 1
+Output: "A"
+
+Case 2 :  Input: columnNumber = 28
+Output: "AB"
+
+Case 3: Input: columnNumber = 701
+Output: "ZY"
+
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string result;
+        int dvd{n};
+        
+        while (dvd) {
+            result.push_back((dvd - 1) % 26 + 'A');
+            dvd = (dvd - 1) / 26;
+        }
+        reverse(result.begin(), result.end());
+
+        return result;
+    }
+};
