@@ -1,0 +1,34 @@
+Que: https://leetcode.com/problems/excel-sheet-column-number
+
+Case 1:-   Input: columnTitle = "A"
+Output: 1
+
+Case 2:-  Input: columnTitle = "AB"
+Output: 28
+
+Case 3:-  Input: columnTitle = "ZY"
+Output: 701
+
+Constraints:
+
+1 <= columnTitle.length <= 7
+columnTitle consists only of uppercase English letters.
+columnTitle is in the range ["A", "FXSHRXW"].
+
+class Solution {
+public:
+    int titleToNumber(string s) {
+        
+        int power=0, colnum=0;
+
+        while(!s.empty()) {
+
+            colnum += (s[s.size()-1] - 'A' + 1)*pow(26, power);
+            power++;
+            s=s.substr(0, s.size()-1);
+
+        }
+
+        return colnum;
+    }
+};
