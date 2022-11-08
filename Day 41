@@ -1,0 +1,22 @@
+Que: https://leetcode.com/problems/make-the-string-great
+
+Case 1: Input: s = "leEeetcode"
+Output: "leetcode"
+Explanation: In the first step, either you choose i = 1 or i = 2, both will result "leEeetcode" to be reduced to "leetcode".
+
+class Solution {
+public:
+    string makeGood(string s) {
+        string result;
+        for (const auto& ch : s) {
+            char counter_ch = islower(ch) ? toupper(ch) : tolower(ch);
+            if (!result.empty() && result.back() == counter_ch) {
+                result.pop_back();
+            } else {
+                result.push_back(ch);
+            }
+        }
+        return result;
+        
+    }
+};
