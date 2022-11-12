@@ -1,0 +1,24 @@
+Que: https://leetcode.com/problems/palindrome-linked-list/submissions/842109273/
+
+Case 1: Input: head = [1,2,2,1]
+Output: true
+
+Case 2: Input: head = [1,2]
+Output: false
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        vector<int> v;
+        ListNode* cur = head;
+        while(cur){
+            v.push_back(cur->val);
+            cur = cur->next;
+        }
+        for(int i = 0; i < v.size()/2; i++){
+            if(v[i] != v[v.size()-1-i]) return false;
+        }
+        return true;
+        
+    }
+};
